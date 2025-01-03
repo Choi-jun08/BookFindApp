@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		23E4B9DD2D27CA3B0025BE50 /* BookFindApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E4B9D32D27CA3B0025BE50 /* BookFindApp.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		23E4B9B62D27C82B0025BE50 /* BookFindApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookFindApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23E4B9DB2D27CA3B0025BE50 /* BookFindApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookFindApp.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,6 +34,26 @@
 			path = BookFindApp;
 			sourceTree = "<group>";
 		};
+		23E4BA072D27CB7D0025BE50 /* Cell */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		23E4BA0A2D27CB920025BE50 /* ViewController */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		23E4BA0D2D27CBE20025BE50 /* ViewModel */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		23E4BA0E2D27CBEF0025BE50 /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +70,11 @@
 		23E4B9AD2D27C82B0025BE50 = {
 			isa = PBXGroup;
 			children = (
+				23E4B9D32D27CA3B0025BE50 /* BookFindApp.xcdatamodeld */,
+				23E4BA0E2D27CBEF0025BE50 /* Model */,
+				23E4BA0D2D27CBE20025BE50 /* ViewModel */,
+				23E4BA0A2D27CB920025BE50 /* ViewController */,
+				23E4BA072D27CB7D0025BE50 /* Cell */,
 				23E4B9B82D27C82B0025BE50 /* BookFindApp */,
 				23E4B9B72D27C82B0025BE50 /* Products */,
 			);
@@ -75,6 +105,10 @@
 			);
 			fileSystemSynchronizedGroups = (
 				23E4B9B82D27C82B0025BE50 /* BookFindApp */,
+				23E4BA072D27CB7D0025BE50 /* Cell */,
+				23E4BA0A2D27CB920025BE50 /* ViewController */,
+				23E4BA0D2D27CBE20025BE50 /* ViewModel */,
+				23E4BA0E2D27CBEF0025BE50 /* Model */,
 			);
 			name = BookFindApp;
 			packageProductDependencies = (
@@ -132,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23E4B9DD2D27CA3B0025BE50 /* BookFindApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +184,6 @@
 				INFOPLIST_FILE = BookFindApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -176,7 +210,6 @@
 				INFOPLIST_FILE = BookFindApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,6 +366,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		23E4B9D32D27CA3B0025BE50 /* BookFindApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				23E4B9DB2D27CA3B0025BE50 /* BookFindApp.xcdatamodel */,
+			);
+			currentVersion = 23E4B9DB2D27CA3B0025BE50 /* BookFindApp.xcdatamodel */;
+			path = BookFindApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 23E4B9AE2D27C82B0025BE50 /* Project object */;
 }
