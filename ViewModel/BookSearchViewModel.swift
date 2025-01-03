@@ -4,10 +4,16 @@
 //
 //  Created by t2023-m0072 on 1/3/25.
 //
+//
+//  BookSearchViewModel.swift
+//  BookSearchApp
+//
+//  Created by t2023-m0072 on 12/30/24.
+//
 import Foundation
 
 class BookSearchViewModel {
-    private let apiKey = "6b50e46215505df5bbfe6ab7f9e5a9d5" // 여기에 발급받은 API 키를 입력하세요
+    private let apiKey = "6b50e46215505df5bbfe6ab7f9e5a9d5"
     private let apiURL = "https://dapi.kakao.com/v3/search/book"
     
     private(set) var books: [Book] = []

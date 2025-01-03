@@ -1,3 +1,4 @@
+//
 //  AppDelegate.swift
 //  BookSearchApp
 //
@@ -5,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,26 +16,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        // UIWindow 생성
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .white
-
-        // TabBarController 설정
-        let tabBarController = UITabBarController()
-
-        // 탭에 ViewController 추가
-        let bookSearchVC = UINavigationController(rootViewController: BookSearchViewController())
-        bookSearchVC.tabBarItem = UITabBarItem(title: "책 검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
-
-        let savedBooksVC = UINavigationController(rootViewController: SavedBooksViewController())
-        savedBooksVC.tabBarItem = UITabBarItem(title: "담은 책", image: UIImage(systemName: "books.vertical"), tag: 1)
-
-        tabBarController.viewControllers = [bookSearchVC, savedBooksVC]
-
-        // UIWindow에 rootViewController 설정
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
-
         return true
+    }
+
+    // MARK: - Core Data Stack
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Model") // Core Data 모델 파일 이름
+        container.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        return container
+    }()
+
+    // MARK: - Core Data Saving Support
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 }

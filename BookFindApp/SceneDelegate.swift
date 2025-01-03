@@ -17,14 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        // UIWindow 생성
+        // UIWindow 생성 및 설정
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
 
-        // TabBarController 설정
         let tabBarController = UITabBarController()
 
-        // 탭에 ViewController 추가
         let bookSearchVC = UINavigationController(rootViewController: BookSearchViewController())
         bookSearchVC.tabBarItem = UITabBarItem(title: "책 검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
 
@@ -33,8 +31,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         tabBarController.viewControllers = [bookSearchVC, savedBooksVC]
 
-        // UIWindow의 rootViewController 설정
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
+
+   
 }

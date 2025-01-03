@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23E4B9DD2D27CA3B0025BE50 /* BookFindApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E4B9D32D27CA3B0025BE50 /* BookFindApp.xcdatamodeld */; };
+		23E4B9DD2D27CA3B0025BE50 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E4B9D32D27CA3B0025BE50 /* Model.xcdatamodeld */; };
 		23E4BAE92D27E4070025BE50 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 23E4BAE82D27E4070025BE50 /* SnapKit */; };
+		23E4BAEF2D27E76E0025BE50 /* SavedBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E4BAED2D27E76E0025BE50 /* SavedBook+CoreDataClass.swift */; };
+		23E4BAF02D27E76E0025BE50 /* SavedBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E4BAEE2D27E76E0025BE50 /* SavedBook+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23E4B9B62D27C82B0025BE50 /* BookFindApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookFindApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		23E4B9DB2D27CA3B0025BE50 /* BookFindApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookFindApp.xcdatamodel; sourceTree = "<group>"; };
+		23E4B9DB2D27CA3B0025BE50 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		23E4BAED2D27E76E0025BE50 /* SavedBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedBook+CoreDataClass.swift"; sourceTree = "<group>"; };
+		23E4BAEE2D27E76E0025BE50 /* SavedBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -72,7 +76,9 @@
 		23E4B9AD2D27C82B0025BE50 = {
 			isa = PBXGroup;
 			children = (
-				23E4B9D32D27CA3B0025BE50 /* BookFindApp.xcdatamodeld */,
+				23E4BAED2D27E76E0025BE50 /* SavedBook+CoreDataClass.swift */,
+				23E4BAEE2D27E76E0025BE50 /* SavedBook+CoreDataProperties.swift */,
+				23E4B9D32D27CA3B0025BE50 /* Model.xcdatamodeld */,
 				23E4BA0E2D27CBEF0025BE50 /* Model */,
 				23E4BA0D2D27CBE20025BE50 /* ViewModel */,
 				23E4BA0A2D27CB920025BE50 /* ViewController */,
@@ -172,7 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23E4B9DD2D27CA3B0025BE50 /* BookFindApp.xcdatamodeld in Sources */,
+				23E4BAEF2D27E76E0025BE50 /* SavedBook+CoreDataClass.swift in Sources */,
+				23E4BAF02D27E76E0025BE50 /* SavedBook+CoreDataProperties.swift in Sources */,
+				23E4B9DD2D27CA3B0025BE50 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,13 +401,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		23E4B9D32D27CA3B0025BE50 /* BookFindApp.xcdatamodeld */ = {
+		23E4B9D32D27CA3B0025BE50 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				23E4B9DB2D27CA3B0025BE50 /* BookFindApp.xcdatamodel */,
+				23E4B9DB2D27CA3B0025BE50 /* Model.xcdatamodel */,
 			);
-			currentVersion = 23E4B9DB2D27CA3B0025BE50 /* BookFindApp.xcdatamodel */;
-			path = BookFindApp.xcdatamodeld;
+			currentVersion = 23E4B9DB2D27CA3B0025BE50 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

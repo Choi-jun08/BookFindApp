@@ -4,11 +4,14 @@
 //  Created by t2023-m0072 on 12/30/24.
 //
 
+// BookSearchViewController.swift
+
 import UIKit
 import SnapKit
 
 class BookSearchViewController: UIViewController {
     private let viewModel = BookSearchViewModel()
+    private let recentBooksViewModel = RecentBooksViewModel()
 
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -16,18 +19,10 @@ class BookSearchViewController: UIViewController {
         return searchBar
     }()
 
-    private let resultsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "검색 결과"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.isHidden = true // 초기에는 숨김
-        return label
-    }()
-
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(BookCell.self, forCellReuseIdentifier: "BookCell") // 커스텀 셀 등록
-        tableView.separatorStyle = .none // 셀 간 구분선 제거
+        tableView.register(BookCell.self, forCellReuseIdentifier: "BookCell")
+        tableView.register(RecentBookCell.self, forCellReuseIdentifier: "RecentBookCell")
         return tableView
     }()
 
@@ -39,76 +34,99 @@ class BookSearchViewController: UIViewController {
         setupLayout()
         setupTableView()
         setupSearchBar()
-        bindViewModel()
+        bindViewModels()
     }
 
     private func setupLayout() {
-        // UI 요소 추가
         view.addSubview(searchBar)
-        view.addSubview(resultsLabel)
         view.addSubview(tableView)
 
-        // SnapKit으로 레이아웃 설정
         searchBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview().inset(10)
         }
 
-        resultsLabel.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(10)
-        }
-
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(resultsLabel.snp.bottom).offset(10)
+            make.top.equalTo(searchBar.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide) // 탭바 위로 올라오지 않도록 수정
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = 100 // 검색 결과 기본 높이
     }
 
     private func setupSearchBar() {
         searchBar.delegate = self
     }
 
-    private func bindViewModel() {
+    private func bindViewModels() {
         viewModel.onBooksUpdated = { [weak self] in
-            guard let self = self else { return }
-            self.resultsLabel.isHidden = self.viewModel.books.isEmpty // 결과 없으면 숨김
-            self.tableView.reloadData()
+            self?.tableView.reloadData()
+        }
+        recentBooksViewModel.onRecentBooksUpdated = { [weak self] in
+            self?.tableView.reloadData()
         }
     }
 }
 
-// MARK: - UISearchBarDelegate
 extension BookSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchBooks(keyword: searchText)
     }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
 extension BookSearchViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return recentBooksViewModel.recentBooks.isEmpty ? 1 : 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 && !recentBooksViewModel.recentBooks.isEmpty {
+            return recentBooksViewModel.recentBooks.count
+        }
         return viewModel.books.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
-            return UITableViewCell()
+        if indexPath.section == 0 && !recentBooksViewModel.recentBooks.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecentBookCell", for: indexPath) as! RecentBookCell
+            let recentBook = recentBooksViewModel.recentBooks[indexPath.row]
+            cell.configure(with: recentBook)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookCell
+            let book = viewModel.books[indexPath.row]
+            cell.configure(with: book)
+            cell.onAddButtonTapped = { [weak self] in
+                guard let self = self else { return }
+                self.recentBooksViewModel.addRecentBook(book) // 최근 본 책에 추가
+            }
+            return cell
         }
-        let book = viewModel.books[indexPath.row]
-        cell.configure(with: book)
-        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let book = viewModel.books[indexPath.row]
-        print("Selected book: \(book.title)")
+        let book: Book
+        if indexPath.section == 0 && !recentBooksViewModel.recentBooks.isEmpty {
+            book = recentBooksViewModel.recentBooks[indexPath.row]
+        } else {
+            book = viewModel.books[indexPath.row]
+            recentBooksViewModel.addRecentBook(book)
+        }
+        let detailVC = BookDetailViewController(book: book)
+        detailVC.modalPresentationStyle = .overFullScreen
+        present(detailVC, animated: true, completion: nil)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && !recentBooksViewModel.recentBooks.isEmpty {
+            return 50 // 최근 본 책 섹션의 행 높이
+        }
+        return 100 // 검색 결과 섹션의 행 높이
     }
 }
