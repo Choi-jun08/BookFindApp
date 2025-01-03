@@ -61,7 +61,8 @@ class BookSearchViewController: UIViewController {
 
         tableView.snp.makeConstraints { make in
             make.top.equalTo(resultsLabel.snp.bottom).offset(10)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide) // 탭바 위로 올라오지 않도록 수정
         }
     }
 
