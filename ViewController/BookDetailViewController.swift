@@ -2,7 +2,7 @@
 //  BookDetailViewController.swift
 //  BookFindApp
 //
-//  Created by t2023-m0072 on 1/3/25.
+//  Created by t2023-m0072 on 12/30/24.
 //
 
 import UIKit
@@ -90,7 +90,7 @@ class BookDetailViewController: UIViewController {
         saveButton.layer.cornerRadius = 10
         saveButton.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
 
-        closeButton.setTitle("X", for: .normal)
+        closeButton.setTitle("취소", for: .normal)
         closeButton.backgroundColor = .systemGray
         closeButton.layer.cornerRadius = 10
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)

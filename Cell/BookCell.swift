@@ -1,6 +1,6 @@
 //
 //  BookCell.swift
-//  BookSearchApp
+//  BookFindApp
 //
 //  Created by t2023-m0072 on 12/30/24.
 //
@@ -12,7 +12,7 @@ class BookCell: UITableViewCell {
     private let thumbnailImageView = UIImageView()
     private let titleLabel = UILabel()
     private let priceLabel = UILabel()
-//    private let addButton = UIButton()
+
 
     // 버튼이 눌렸을 때 동작을 전달하기 위한 클로저
     var onAddButtonTapped: (() -> Void)?
@@ -32,7 +32,7 @@ class BookCell: UITableViewCell {
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
-//        contentView.addSubview(addButton)
+
 
         // 이미지 뷰 레이아웃 설정
         thumbnailImageView.snp.makeConstraints { make in
@@ -58,18 +58,6 @@ class BookCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-10) // 아래 여백
         }
 
-        // 버튼 레이아웃 설정
-//        addButton.snp.makeConstraints { make in
-//            make.trailing.equalToSuperview().offset(-10) // 오른쪽 여백
-//            make.centerY.equalToSuperview() // 수직 가운데 정렬
-//            make.width.height.equalTo(40) // 크기 조정
-//        }
-
-        // 버튼 스타일 설정
-//        addButton.setTitle("담기", for: .normal)
-//        addButton.backgroundColor = .systemBlue
-//        addButton.layer.cornerRadius = 20 // 버튼을 동그랗게
-//        addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
     }
 
     // 셀 데이터 설정
